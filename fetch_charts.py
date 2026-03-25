@@ -1,7 +1,9 @@
 import json
 import time
 from datetime import datetime
-from google_play_scraper import top_chart
+from google_play_scraper import app as gp_app_detail
+from google_play_scraper.constants.google_play import Sort
+import google_play_scraper
 
 REGIONS = {
     "TW": {"lang": "zh-TW"},
@@ -18,12 +20,27 @@ CHARTS = {
 
 def fetch_gp_chart(country, lang, chart_key):
     try:
-        results = top_chart(
+        from google_play_scraper import top_charts
+        results = top_charts(
             chart=CHARTS[chart_key],
-            category="GAME",
+            category=google_play_scraper.constants.google_play.Category.GAME,
             country=country,
             lang=lang,
             n=15
+        )
+        return [{"name": r.get("title",""), "dev": r.get("developer","")}
+                for r in results if r.get("title")]
+    except ImportError:
+        pass
+
+    try:
+        from google_play_scraper import collection
+        results = collection(
+            collection_name=CHARTS[chart_key],
+            category_name="GAME",
+            country=country,
+            lang=lang,
+            count=15
         )
         return [{"name": r.get("title",""), "dev": r.get("developer","")}
                 for r in results if r.get("title")]
