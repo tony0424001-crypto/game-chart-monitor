@@ -1,0 +1,25 @@
+{
+  "date": "2026-03-25",
+  "regions": {
+    "TW": {
+      "gp_free": [],
+      "gp_grossing": []
+    },
+    "HK": {
+      "gp_free": [],
+      "gp_grossing": []
+    },
+    "MO": {
+      "gp_free": [],
+      "gp_grossing": []
+    },
+    "JP": {
+      "gp_free": [],
+      "gp_grossing": []
+    },
+    "KR": {
+      "gp_free": [],
+      "gp_grossing": []
+    }
+  }
+}
